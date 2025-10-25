@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "cat-dummy-8.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
