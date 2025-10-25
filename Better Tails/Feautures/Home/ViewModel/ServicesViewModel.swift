@@ -6,7 +6,11 @@
 //
 
 struct ServicesViewModel {
-    var services: [Services] = [
-        Services(name: "Training", image: "icon-training", type: .training)
+    let services: [Service] = [
+        Service(name: "Training", image: "graduationcap.fill", type: .training),
+        Service(name: "Adoption Guide", image: "book.closed.fill", type: .adoptionGuide),
+        Service(name: "Found a Pet?", image: "questionmark.diamond.fill", type: .foundPet),
+        Service(name: "Care Tips", image: "heart.text.square.fill", type: .petCareTips),
+        Service(name: "Emergencies", image: "cross.case.fill", type: .emergency),
     ]
 }

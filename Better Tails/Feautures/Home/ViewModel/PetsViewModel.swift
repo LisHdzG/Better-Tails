@@ -14,11 +14,20 @@ class PetsViewModel: ObservableObject {
     
     @Published var pets: [Pets] = []
     @Published var filteredFavoritePets: [Pets] = []
+    @Published var petInAdoption: Pets? = nil
+    @Published var adoptionStage: AdoptionStage = .applying
     
     init() {
         loadPetData()
         loadFavorites()
         applyFavoriteFilter()
+    }
+    
+    func startAdoptionProcess(pet: Pets) {
+        self.petInAdoption = pet
+        self.adoptionStage = .applying
+        
+        self.pets.removeAll { $0.id == pet.id }
     }
     
     private func applyFavoriteFilter() {
@@ -64,7 +73,7 @@ class PetsViewModel: ObservableObject {
     }
     
     private func loadPetData() {
-        self.pets = [
+        let petsList = [
             Pets(name: "Michi",
                  photo: "cat-dummy-1",
                  lat: 40.8355, long: 14.3020,
@@ -109,7 +118,7 @@ class PetsViewModel: ObservableObject {
                  photo: "cat-dummy-6",
                  lat: 40.8450, long: 14.3100,
                  gender: .female, location: "Spiaggia di San Giovanni", petType: .cat,
-                 weight: "10 lbs", age: "2 years", friendliness: "Shy at first",
+                 weight: "10 lbs", age: "2 years", friendliness: "Shy",
                  description: "Bella is a beautiful but shy cat. She takes a little time to warm up, but once she trusts you, she's the most loyal companion. She prefers a quiet home without loud noises.",
                  ownerName: "Happy Paws", ownerImage: "shelter-dummy-1"),
             
@@ -173,7 +182,7 @@ class PetsViewModel: ObservableObject {
                  photo: "dog-dummy-1",
                  lat: 40.8351, long: 14.3014,
                  gender: .male, location: "Academy Campus", petType: .dog,
-                 weight: "55 lbs", age: "4 years", friendliness: "Very Friendly",
+                 weight: "55 lbs", age: "4 years", friendliness: "Friendly",
                  description: "Buddy is everyone's best friend! He's a happy-go-lucky dog who was a campus favorite. He knows 'sit' and 'shake' and loves to play fetch. He is great with kids and other dogs.",
                  ownerName: "Faithful Friend Center", ownerImage: "shelter-dummy-2"),
                  
@@ -181,7 +190,7 @@ class PetsViewModel: ObservableObject {
                  photo: "dog-dummy-2",
                  lat: 40.8385, long: 14.2985,
                  gender: .female, location: "Via Traversa Protopisani", petType: .dog,
-                 weight: "40 lbs", age: "3 years", friendliness: "High-Energy",
+                 weight: "40 lbs", age: "3 years", friendliness: "Energy",
                  description: "Lucy is a high-energy girl who needs room to run. She's incredibly smart and would excel at agility training. She needs an active owner who can keep up with her adventures.",
                  ownerName: "New Life Rescue", ownerImage: "shelter-dummy-3"),
                  
@@ -221,7 +230,7 @@ class PetsViewModel: ObservableObject {
                  photo: "dog-dummy-7",
                  lat: 40.8505, long: 14.2855,
                  gender: .male, location: "Porto di Napoli", petType: .dog,
-                 weight: "70 lbs", age: "5 years", friendliness: "Gentle Giant",
+                 weight: "70 lbs", age: "5 years", friendliness: "Gentle",
                  description: "Apollo is a true gentle giant. Despite his size, he's a bit of a lap dog. He is calm, patient, and absolutely loves belly rubs. He walks perfectly on a leash and is a perfect gentleman.",
                  ownerName: "Faithful Friend Center", ownerImage: "shelter-dummy-2"),
                  
@@ -289,5 +298,6 @@ class PetsViewModel: ObservableObject {
                  description: "Gus is a big, goofy boy who doesn't know his own size. He loves to lean on his humans for pets and will roll over for a belly rub at any opportunity. He's just a big, lovable goofball.",
                  ownerName: "Animal Home Foundation", ownerImage: "shelter-dummy-4")
         ]
+        self.pets = petsList.shuffled()
     }
 }

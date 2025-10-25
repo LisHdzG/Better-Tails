@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "apan-shelter-promo.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

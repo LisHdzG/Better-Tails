@@ -33,7 +33,7 @@ struct ContentView: View {
            }
            Tab("Match met", systemImage: "pawprint", value: .matchMe, role: .search) {
                NavigationStack {
-                   SuggestionView()
+                   PetFinderMatchView()
                }
            }
         }
