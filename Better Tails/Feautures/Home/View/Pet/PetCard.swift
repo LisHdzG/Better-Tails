@@ -56,7 +56,7 @@ struct PetCard: View {
                     .padding(5)
                     .background {
                         Circle()
-                            .fill(.brandPrimary.opacity(0.5))
+                            .fill(.gray.opacity(0.3))
                     }
             }
             .frame(width: 180)

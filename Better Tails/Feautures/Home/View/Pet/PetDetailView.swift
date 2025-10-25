@@ -30,9 +30,23 @@ struct PetDetailView: View {
                     VStack {
                         HStack(alignment: .top) {
                             VStack(alignment: .leading) {
-                                Text(pet.name)
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
+                                HStack (spacing: 10) {
+                                    Text(pet.name)
+                                        .font(.largeTitle)
+                                        .fontWeight(.bold)
+                                    
+                                    Image(pet.gender == .female ? .iconFemenine : .iconMars)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 14, height: 14)
+                                        .foregroundStyle(.white)
+                                        .padding(5)
+                                        .background {
+                                            Circle()
+                                                .fill(.gray.opacity(0.3))
+                                        }
+                                }
+                               
                                 Text(pet.location)
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
@@ -152,18 +166,22 @@ struct PetDetailView: View {
             }
     }
 }
+
 struct StatBox: View {
     let title: String
     let value: String
-    
+     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .font(.caption)
                 .foregroundStyle(.secondary)
+            
             Text(value)
                 .font(.headline)
                 .fontWeight(.semibold)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
