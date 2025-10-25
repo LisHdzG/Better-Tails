@@ -13,6 +13,9 @@ struct PetHomeView: View {
         
     @State private var isCyclingStages: Bool = false
     
+     @State private var showingShelterWebView = false
+     private let shelterURL = URL(string: "https://furryrescueitaly.com/")!
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
@@ -65,14 +68,25 @@ struct PetHomeView: View {
                             }
                         }
                         
+
+                        ShelterBannerView(onTapAction: {
+                            showingShelterWebView = true
+                        })
+                        .id("shelter_banner")
+                        
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Pet Services")
                                 .font(.title2)
                                 .fontWeight(.bold)
                             
                             ScrollView(.horizontal) {
-                                ForEach (servicesViewModel.services) { services in
-                                    ServiceButton(service: services)
+                                HStack(spacing: 16) {
+                                    ForEach (servicesViewModel.services) { service in
+                                        NavigationLink(destination: destinationView(for: service.type)) {
+                                            ServiceButton(service: service)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
                                 }
                             }
                             .scrollIndicators(.hidden)
@@ -92,7 +106,6 @@ struct PetHomeView: View {
                                         .foregroundColor(.primary)
                                 }
                             }
-                            .padding(.horizontal)
                             
                             ScrollView(.horizontal) {
                                 HStack(spacing: 16) {
@@ -110,13 +123,32 @@ struct PetHomeView: View {
                             .scrollIndicators(.hidden)
                         }
                         
-                        HelpBannerView()
+                        NonAdoptionHelpCard()
                     }
                     .padding()
                     .padding(.bottom, 120)
                 }
                 .scrollIndicators(.hidden)
             }
+        }.sheet(isPresented: $showingShelterWebView) {
+            WebView(url: shelterURL)
+                .ignoresSafeArea()
+        }
+    }
+    
+    @ViewBuilder
+    private func destinationView(for serviceType: ServiceType) -> some View {
+        switch serviceType {
+        case .training:
+            TrainingGuideView()
+        case .adoptionGuide:
+            AdoptionGuideView()
+        case .foundPet:
+            FoundPetView()
+        case .petCareTips:
+            PetCareTipsView()
+        case .emergency:
+            EmergencyInfoView()
         }
     }
 }

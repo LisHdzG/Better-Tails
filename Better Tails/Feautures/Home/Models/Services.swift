@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-enum ServicesType {
-    case training
+enum ServiceType {
+    case training       // Existing
+    case adoptionGuide  // How to adopt
+    case foundPet       // What to do if you find a stray
+    case petCareTips    // General care advice
+    case emergency      // What to do in an emergency
 }
 
-struct Services: Identifiable {
+struct Service: Identifiable {
     var id = UUID()
-    
     var name: String
     var image: String
-    var type: ServicesType
+    var type: ServiceType
 }

@@ -38,16 +38,6 @@ struct HeaderView: View {
                 Spacer()
             }
             .glassEffect(.regular)
-            
-            
-            Button(action: {
-            }, label: {
-                Image(systemName: "info.circle.fill")
-                    .foregroundColor(.brandPrimary)
-                    .clipShape(Circle())
-            })
-            .glassEffect()
-            
         }
     }
 }

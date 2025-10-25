@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ServiceButton: View {
-    let service: Services
-    
+    let service: Service
+     
     var body: some View {
         VStack(spacing: 8) {
-            Image(service.image)
+            Image(systemName: service.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30, height: 30)
@@ -20,19 +20,12 @@ struct ServiceButton: View {
                 .padding(20)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(red: 0.95, green: 0.95, blue: 0.97))
+                        .fill(Color(.systemGray6))
                 }
-            
+             
             Text(service.name)
                 .font(.caption)
-                .foregroundStyle(.gray)
+                .foregroundStyle(.secondary)
         }
     }
-}
-
-
-#Preview {
-    ServiceButton(service: Services(name: "name",
-                                    image: "image",
-                                    type: .training))
 }

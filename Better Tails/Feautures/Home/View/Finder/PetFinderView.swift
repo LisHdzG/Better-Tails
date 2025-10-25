@@ -8,18 +8,10 @@
 import SwiftUI
 import MapKit
 
-enum PetFilterType: String, CaseIterable {
-    case all = "All"
-    case dogs = "Dogs"
-    case cats = "Cats"
-}
-
 struct PetFinderView: View {
     
     @EnvironmentObject var petsViewModel: PetsViewModel
-    
-    @State private var selectedFilter: PetFilterType = .all
-    
+        
     @State private var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 40.8368, longitude: 14.3059),
@@ -34,14 +26,7 @@ struct PetFinderView: View {
     @State private var isMapSelection: Bool = false
 
     var filteredPets: [Pets] {
-        switch selectedFilter {
-        case .all:
-            return petsViewModel.pets
-        case .dogs:
-            return petsViewModel.pets.filter { $0.petType == .dog }
-        case .cats:
-            return petsViewModel.pets.filter { $0.petType == .cat }
-        }
+        return petsViewModel.pets
     }
     
     var body: some View {
@@ -49,25 +34,6 @@ struct PetFinderView: View {
             ScrollViewReader { scrollProxy in
                 ZStack {
                     VStack {
-                    
-                        Picker("PetFilter", selection: $selectedFilter) {
-                            ForEach(PetFilterType.allCases, id: \.self) { filter in
-                                Text(filter.rawValue).tag(filter)
-                                    .fontWeight(.medium)
-                            }
-                        }
-                        .padding(.horizontal, 20)
-                        .pickerStyle(.palette)
-                        .onChange(of: selectedFilter) {
-                            if let firstPetInFilter = filteredPets.first {
-                                selectPet(firstPetInFilter, moveMap: true)
-                                scrolledPetID = firstPetInFilter.id
-                            } else {
-                                selectedPetID = nil
-                                scrolledPetID = nil
-                            }
-                        }
-                        
                         Spacer()
                         
                         ScrollView(.horizontal) {
@@ -81,8 +47,8 @@ struct PetFinderView: View {
                                         .cornerRadius(10)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
-                                                .stroke(pet.id == selectedPetID ? Color(.brandPrimary).opacity(0.5) : Color.gray.opacity(0.1),
-                                                        lineWidth: pet.id == selectedPetID ? 5 : 1)
+                                                .stroke(pet.id == selectedPetID ? Color(.brandPrimary) : Color.gray.opacity(0.1),
+                                                        lineWidth: pet.id == selectedPetID ? 1 : 1)
                                         )
                                         .onTapGesture {
                                             selectPet(pet, moveMap: true)

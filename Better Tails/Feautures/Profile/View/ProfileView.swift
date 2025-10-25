@@ -19,7 +19,6 @@ struct ProfileView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 32) {
-                    
                     VStack(spacing: 8) {
                         Image(userImage)
                             .resizable()
@@ -77,6 +76,15 @@ struct ProfileView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        ContactsView()
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                    }
+                }
+            }
         }
     }
 }

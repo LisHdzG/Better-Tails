@@ -72,7 +72,7 @@ struct CurrentAdoptionCard: View {
                             x: isConfettiAnimating ? (Double.random(in: -1...1) * 250) : 0,
                             y: isConfettiAnimating ? (Double.random(in: -1...1) * 350) : 0
                         )
-                        .opacity(isConfettiAnimating ? 0 : 1) // Esta es la animación de "fade out"
+                        .opacity(isConfettiAnimating ? 0 : 1)
                         .animation(
                             .easeOut(duration: 1.5).delay(Double.random(in: 0...0.2)),
                             value: isConfettiAnimating

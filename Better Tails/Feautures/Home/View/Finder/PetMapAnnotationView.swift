@@ -10,22 +10,27 @@ import SwiftUI
 struct PetMapAnnotationView: View {
     let pet: Pets
     let isSelected: Bool
-    
+     
     var body: some View {
-        let iconName = pet.petType == .dog ? "dog.fill" : "cat.fill"
-        
+        let isFavorite = pet.favorite
+        let iconName = isFavorite ? "heart.fill" : (pet.petType == .dog ? "dog.fill" : "cat.fill")
+
+        let selectedColor: Color = isFavorite ? .red : .brandPrimary
+        let deselectedColor: Color = isFavorite ? .red.opacity(0.7) : .brandPrimary.opacity(0.5)
+        let strokeColor: Color = isSelected ? selectedColor : (isFavorite ? .red.opacity(0.5) : .gray.opacity(0.5))
+
         ZStack {
             Image(systemName: iconName)
                 .font(.body)
-                .foregroundStyle(isSelected ? .brandPrimary : .brandPrimary.opacity(0.5))
+                .foregroundStyle(isSelected ? selectedColor : deselectedColor)
                 .padding(8)
                 .background(.white)
                 .clipShape(Circle())
                 .overlay(
                     Circle()
                         .stroke(
-                            isSelected ? Color.brandPrimary : Color.gray.opacity(0.5),
-                            lineWidth: isSelected ? 4 : 1
+                            strokeColor,
+                            lineWidth: isSelected ? 4 : (isFavorite ? 2 : 1)
                         )
                 )
                 .shadow(color: .black.opacity(0.3), radius: 3, y: 2)
