@@ -14,11 +14,20 @@ class PetsViewModel: ObservableObject {
     
     @Published var pets: [Pets] = []
     @Published var filteredFavoritePets: [Pets] = []
+    @Published var petInAdoption: Pets? = nil
+    @Published var adoptionStage: AdoptionStage = .applying
     
     init() {
         loadPetData()
         loadFavorites()
         applyFavoriteFilter()
+    }
+    
+    func startAdoptionProcess(pet: Pets) {
+        self.petInAdoption = pet
+        self.adoptionStage = .applying
+        
+        self.pets.removeAll { $0.id == pet.id }
     }
     
     private func applyFavoriteFilter() {
@@ -64,7 +73,7 @@ class PetsViewModel: ObservableObject {
     }
     
     private func loadPetData() {
-        self.pets = [
+        let petsList = [
             Pets(name: "Michi",
                  photo: "cat-dummy-1",
                  lat: 40.8355, long: 14.3020,
@@ -289,5 +298,6 @@ class PetsViewModel: ObservableObject {
                  description: "Gus is a big, goofy boy who doesn't know his own size. He loves to lean on his humans for pets and will roll over for a belly rub at any opportunity. He's just a big, lovable goofball.",
                  ownerName: "Animal Home Foundation", ownerImage: "shelter-dummy-4")
         ]
+        self.pets = petsList.shuffled()
     }
 }

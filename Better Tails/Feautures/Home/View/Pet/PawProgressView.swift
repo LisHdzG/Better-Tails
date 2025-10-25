@@ -11,12 +11,15 @@ struct PawProgressView: View {
     let totalSteps: Int
     let currentStepIndex: Int
     
+    let activeColor: Color
+    let inactiveColor: Color
+    
     var body: some View {
         HStack {
-            ForEach(0..<totalSteps, id: \.self) { index in
-                Image(systemName: index <= currentStepIndex ? "pawprint.fill" : "pawprint")
-                    .font(.body)
-                    .foregroundColor(index <= currentStepIndex ? .brandPrimary : Color(.systemGray4))
+            ForEach(0..<totalSteps, id: \.self) { i in
+                Image(systemName: "pawprint.fill")
+                    .font(.caption)
+                    .foregroundColor(i <= currentStepIndex ? activeColor : inactiveColor)
             }
         }
         .padding(.vertical, 1)

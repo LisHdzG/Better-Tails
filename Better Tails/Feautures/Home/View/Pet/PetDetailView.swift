@@ -13,6 +13,7 @@ struct PetDetailView: View {
     
     @State private var showingAdoptionRules = false
     @State private var showSuccessScreen = false
+    @Environment(\.presentationMode) var presentationMode
     
     let pet: Pets
     
@@ -142,6 +143,12 @@ struct PetDetailView: View {
             }
             .fullScreenCover(isPresented: $showSuccessScreen) {
                 AdoptionSuccessView(pet: pet)
+                    .environmentObject(viewModel)
+            }
+            .onChange(of: showSuccessScreen) { oldValue, newValue in
+                if oldValue == true && newValue == false {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
     }
 }

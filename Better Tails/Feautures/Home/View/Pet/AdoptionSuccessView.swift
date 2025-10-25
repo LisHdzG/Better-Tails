@@ -4,22 +4,23 @@
 //
 //  Created by Marian Lisette Hernandez Guzman on 24/10/25.
 //
+
 import SwiftUI
 
 struct AdoptionSuccessView: View {
-    
+     
     let pet: Pets
-    
+     
     @State private var isAnimating = false
-    
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var petsViewModel: PetsViewModel
 
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ZStack {
             Color(.brandPrimary)
                 .ignoresSafeArea()
-            
+           
             ZStack {
                 ForEach(0..<40) { _ in
                     Circle()
@@ -36,18 +37,21 @@ struct AdoptionSuccessView: View {
                         )
                 }
             }
-            
+           
             VStack(spacing: 20) {
+                
+                Spacer()
+                
                 Image(systemName: "pawprint.fill")
                     .font(.system(size: 60))
                     .foregroundColor(.white.opacity(0.9))
                 
-                Text("Succes Adoption!")
+                Text("You have a new friend!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
-                
+               
                 Image(pet.photo)
                     .resizable()
                     .scaledToFill()
@@ -55,33 +59,46 @@ struct AdoptionSuccessView: View {
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.white, lineWidth: 6))
                     .shadow(radius: 10)
-                
+               
                 Text(pet.name)
-                    .font(.system(size: 48, weight: .bold))
+                    .font(.system(size: 30, weight: .bold))
                     .foregroundColor(.white)
-                
-                Text("Now is part of your family! ❤️")
+               
+                Text("Your adoption process has started!")
                     .font(.title3)
+                    .fontWeight(.medium)
                     .foregroundColor(.white.opacity(0.9))
+                    .scaleEffect(isAnimating ? 1 : 0.3)
+                    .opacity(isAnimating ? 1 : 0)
+                    .animation(
+                        .interpolatingSpring(stiffness: 100, damping: 10).delay(0.7),
+                        value: isAnimating
+                    )
+
+                Text("We'll be in touch soon. ❤️")
+                    .font(.caption)
+                    .foregroundColor(.white.opacity(0.9))
+                
+                Spacer()
+                
+                
             }
-            
             .scaleEffect(isAnimating ? 1 : 0.3)
             .opacity(isAnimating ? 1 : 0)
             .animation(
                 .interpolatingSpring(stiffness: 120, damping: 12).delay(0.2),
                 value: isAnimating
             )
-            
+           
         }
         .onAppear {
             isAnimating = true
-            /*
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            petsViewModel.startAdoptionProcess(pet: pet)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                 withAnimation(.easeIn(duration: 0.5)) {
                     presentationMode.wrappedValue.dismiss()
                 }
-            }*/
+            }
         }
     }
 }
-
