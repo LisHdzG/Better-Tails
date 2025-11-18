@@ -1,53 +1,63 @@
-# 🐾 Better Tails: Adopción Responsable, Simplificada.
+# 🚀 Agora: Meaningful Connections, Reimagined.
 
 ## 💡 The Problem
 
-The traditional pet adoption process is often a barrier:
+In-person networking is often a challenge:
 
-* **Confusing:** Adopters are unsure of the commitment and logistics.
-* **Inefficient:** Shelters lack the digital tools for effective matching and communication.
-* **Uncertain:** The lack of support leads to higher rates of returned pets.
+- **Unstructured:** People meet at events but rarely exchange contact information properly.  
+- **Easy to Lose:** Contacts end up scattered across photos, notes, or forgotten apps.  
+- **Not Memorable:** It’s easy to forget who you met, where, and why.
 
-**Our Challenge:** Create a tech solution that simplifies the adoption journey while enforcing responsibility, building lasting connections between pets and their future families.
+**Our Challenge:** Create a modern, fluid solution that transforms real-life encounters into lasting, organized digital connections.
 
 ---
 
-## ✨ The Better Tails Solution
+## ✨ The Agora Solution
 
-Better Tails is the end-to-end digital platform designed for both the adopter and the shelter, focusing on three core pillars:
+Agora is the elegant, lightweight platform designed to enhance real-world networking through three core pillars:
 
-### 1. Smart Matching & Discovery (Swipe for Love)
+---
 
-We use an intuitive interface to help users quickly browse and save pets near them that match their lifestyle. Our platform promotes **"best fit"** adoption based on detailed pet profiles and location data.
+### 1. Instant QR-Based Connections
 
-<img width="350" alt="Home Screen & Finder" src="https://github.com/user-attachments/assets/a4aa90f2-af5e-40d3-ac93-671911861c23" />
+Agora focuses on capturing the moment when people actually meet.
 
-#### Key Discovery Features:
-* **Pet Finder:** Swipe-based interface for fast, engaging discovery.
-* **Location Mapping:** See pets available for adoption on a map (`PetMapAnnotationView`).
-* **Favorites List:** Easily save and track potential adoptees.
+We remove friction by allowing users to connect simply by scanning a personalized QR code—no typing, no searching, no awkward exchanges.
 
-### 2. Comprehensive Educational Services
+<img width="350" alt="IMG_9133" src="https://github.com/user-attachments/assets/f4d98403-a0ed-485b-95b1-b2b84a8bf9ba" />
 
-We provide immediate access to essential knowledge and a clear guide to responsible pet ownership, addressing the fear of not being ready.
+#### Key Connection Features:
+- **Dynamic QR Generator:** Each user has a clean, scannable identity code.  
+- **Instant QR Scanner:** Add a new connection in seconds.  
+- **Connection History:** All encounters are saved and accessible at any time.
 
-<img src="https://github.com/user-attachments/assets/e2b7354a-3599-4564-9668-2728712ec90e" alt="Care Tips & Readiness Check" width="350"/>
+---
 
-#### Key Education Features:
-* **Readiness Check:** A crucial step to confirm long-term commitment and home preparation.
-* **Care Tips & Guides:** Detailed sections on diet, health, and training.
-* **Emergency Protocol:** Quick access to critical pet emergency information.
+### 2. Simple & Clean User Profiles
 
-### 3. Post-Adoption Support & Tracking
+Agora provides each user with a minimal identity card that reflects who they are at a glance.
 
-The process is transparent from start to finish. We provide real-time updates and direct communication tools to strengthen the bond between the new pet family and the shelter.
+<img width="350" alt="IMG_9130" src="https://github.com/user-attachments/assets/083973ae-ce47-4513-8e47-22dc7bc3243b" />
 
-<img src="https://github.com/user-attachments/assets/ae7813b9-6965-4143-9007-6aa337ad588e" alt="Adoption Status & Services" width="350"/>
+#### Key Profile Features:
+- **Lightweight user profile** with essential information.  
+- **Editable fields with live preview.**  
+- **Glassmorphism design:** Blur-based UI for a modern, premium look.
 
-#### Key Support Features:
-* **Adoption Tracker:** Real-time progress monitoring of the application (`PawProgressView`).
-* **Direct Contact:** Easy access to the shelter via phone or WhatsApp.
-* **Community Support:** Options to volunteer, donate, or foster for animals in need.
+---
+
+### 3. Smooth, Modern User Experience
+
+A huge part of this project was mastering fluid UI design, motion, and interaction patterns.
+
+<img width="350"  alt="IMG_9134" src="https://github.com/user-attachments/assets/ab666990-39bd-46c1-8433-cd4b90531288" />
+<img width="350"  alt="IMG_9131" src="https://github.com/user-attachments/assets/1a685cc2-7a9e-48f0-9f99-3f6f9618e141" />
+
+#### Key Experience Features:
+- **Advanced SwiftUI animations** to create a dynamic interface.  
+- **Natural transitions** for intuitive navigation.  
+- **Glassmorphism components** that enhance depth and clarity.  
+- **Micro-interactions** that make the app feel alive.
 
 ---
 
@@ -56,8 +66,32 @@ The process is transparent from start to finish. We provide real-time updates an
 | Category | Details |
 | :--- | :--- |
 | **Language** | Swift 5.9+ |
-| **Frameworks** | **SwiftUI** (Declarative UI), MapKit (Location) |
+| **Frameworks** | SwiftUI, AVFoundation (QR Scanning), CoreImage |
 | **Architecture** | MVVM (Model-View-ViewModel) |
-| **Development** | iOS 17.0+ |
+| **Platform** | iOS 17.0+ |
 
-**Key Structure Insight:** The modular use of `ViewModels` (`PetsViewModel`, `ServicesViewModel`) ensures clear separation of business logic and UI, making the app highly scalable and testable.
+**Key Structure Insight:**  
+The modular use of ViewModels (`ProfileViewModel`, `QRViewModel`, `ConnectionsViewModel`) ensures that business logic stays clean, separated, and scalable.
+
+---
+
+## 🔒 Security Note
+
+This public repository contains a **safe, stripped-down version** of the project.  
+All internal links, sensitive information, and private files have been removed.
+
+**⚠️ This repository will be deleted in a few days for security purposes.**
+
+---
+
+## 🎯 Final Purpose
+
+Agora is not a clone — it is a **reinterpretation** of an existing App Store concept, built to learn:
+
+- Smooth UI patterns  
+- Advanced animations  
+- Glassmorphism layouts  
+- QR-based identity exchange  
+- Scalable MVVM architecture  
+
+A personal exploration transformed into a functional, modern networking tool.
